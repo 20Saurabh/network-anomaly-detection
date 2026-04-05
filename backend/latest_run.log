@@ -1,0 +1,84 @@
+--- NetGuard Benchmark Run ---
+Command: python run_experiments.py --dataset unsw_nb15 --epochs 10 --runs 1 --models cnn1d --max-samples 20000
+[CONFIG] Using CPU (set CUDA_VISIBLE_DEVICES or install CUDA for GPU)
+[CONFIG] Project root: C:\Users\Saurabh\Desktop\Network-Anomaly-Detection\backend
+[CONFIG] Results dir:  C:\Users\Saurabh\Desktop\Network-Anomaly-Detection\backend\results
+
+============================================================
+  NETWORK ANOMALY DETECTION BENCHMARK v2.0
+  Next-Generation Research-Grade System
+============================================================
+  Device: cpu
+  Dataset: unsw_nb15
+  Runs: 1
+
+============================================================
+  Loading dataset: UNSW-NB15
+============================================================
+  Raw shape: (257673, 45)
+  Subsampled to: 20000 rows
+  Classes: 2 (binary)
+  Feature matrix: (20000, 42)
+  Label distribution: {np.int64(0): np.int64(7290), np.int64(1): np.int64(12710)}
+  Train: (14000, 42), Val: (3000, 42), Test: (3000, 42)
+  Models: ['cnn1d']
+
+############################################################
+  RUN 1/1 (seed=42)
+############################################################
+
+============================================================
+  MODEL: cnn1d
+============================================================
+
+------------------------------------------------------------
+  Training: cnn1d
+  Parameters: 163,906
+  Epochs: 10, LR: 0.001, Device: cpu
+------------------------------------------------------------
+  Epoch   1/10 | Train: 0.263738 | Val: 0.205006 | LR: 1.00e-03
+  Epoch   2/10 | Train: 0.180863 | Val: 0.170983 | LR: 1.00e-03
+  Epoch   3/10 | Train: 0.156905 | Val: 0.185829 | LR: 1.00e-03
+  Epoch   4/10 | Train: 0.149951 | Val: 0.164356 | LR: 1.00e-03
+  Epoch   5/10 | Train: 0.147626 | Val: 0.158839 | LR: 1.00e-03
+  Epoch   6/10 | Train: 0.140752 | Val: 0.165824 | LR: 1.00e-03
+  Epoch   7/10 | Train: 0.136243 | Val: 0.155709 | LR: 1.00e-03
+  Epoch   8/10 | Train: 0.139924 | Val: 0.173279 | LR: 1.00e-03
+  Epoch   9/10 | Train: 0.138620 | Val: 0.155651 | LR: 1.00e-03
+  Epoch  10/10 | Train: 0.132859 | Val: 0.169612 | LR: 1.00e-03
+  Done in 132.9s | Best val loss: 0.155651
+
+  Evaluating: cnn1d
+    Accuracy:  0.8980
+    Precision: 0.9957
+    Recall:    0.8432
+    F1-Score:  0.9131
+    AUC-ROC:   0.9855019620016013
+    Latency:   0.156 ms/sample
+    Throughput: 6402 samples/sec
+
+============================================================
+  FINAL RESULTS SUMMARY
+============================================================
+  Model | Accuracy | Precision | Recall | F1     | AUC-ROC | Latency(ms)
+  ------+----------+-----------+--------+--------+---------+------------
+  cnn1d | 0.8980   | 0.9957    | 0.8432 | 0.9131 | 0.9855  | 0.156      
+
+  Results saved: C:\Users\Saurabh\Desktop\Network-Anomaly-Detection\backend\results\metrics\all_results.json
+
+============================================================
+  Generating plots for: unsw_nb15
+============================================================
+  Saved: training_curves_unsw_nb15.png/pdf
+  Saved: metric_comparison_unsw_nb15.png/pdf
+  Saved: confusion_matrices_unsw_nb15.png/pdf
+  Saved: latency_f1_unsw_nb15.png/pdf
+  Saved: roc_curves_unsw_nb15.png/pdf
+  Saved: pr_curves_unsw_nb15.png/pdf
+  All plots saved to: C:\Users\Saurabh\Desktop\Network-Anomaly-Detection\backend\results\plots
+
+============================================================
+  ADVERSARIAL ROBUSTNESS EVALUATION
+============================================================
+
+[ERROR] Pipeline failed: 'charmap' codec can't encode character '\ufffd' in position 14: character maps to <undefined>

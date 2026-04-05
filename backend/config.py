@@ -15,6 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 DATA_DIR = PROJECT_ROOT / "data" / "raw"
 PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 RESULTS_DIR = PROJECT_ROOT / "results"
+# Default paths (will be overridden by update_results_dir during a tracked run)
 MODELS_DIR = RESULTS_DIR / "models"
 PLOTS_DIR = RESULTS_DIR / "plots"
 METRICS_DIR = RESULTS_DIR / "metrics"
@@ -22,6 +23,19 @@ REPORTS_DIR = RESULTS_DIR / "reports"
 
 for d in [DATA_DIR, PROCESSED_DIR, RESULTS_DIR, MODELS_DIR, PLOTS_DIR, METRICS_DIR, REPORTS_DIR]:
     d.mkdir(parents=True, exist_ok=True)
+
+def update_results_dir(run_name: str):
+    """Dynamically update output directories for tracking history."""
+    global MODELS_DIR, PLOTS_DIR, METRICS_DIR, REPORTS_DIR
+    run_dir = RESULTS_DIR / "runs" / run_name
+    MODELS_DIR = run_dir / "models"
+    PLOTS_DIR = run_dir / "plots"
+    METRICS_DIR = run_dir / "metrics"
+    REPORTS_DIR = run_dir / "reports"
+    
+    for d in [run_dir, MODELS_DIR, PLOTS_DIR, METRICS_DIR, REPORTS_DIR]:
+        d.mkdir(parents=True, exist_ok=True)
+
 
 # ─── Device ──────────────────────────────────────────────────────────────────
 def get_device() -> torch.device:
@@ -100,6 +114,15 @@ DATASET_CONFIGS = {
         categorical_cols=[],
         drop_cols=[],
         max_samples=500_000 if not torch.cuda.is_available() else None,
+    ),
+    "custom": DatasetConfig(
+        name="Custom Dataset",
+        train_file=str(DATA_DIR / "custom" / "data.csv"),
+        label_col="label",
+        attack_cat_col="label",
+        categorical_cols=[],
+        drop_cols=[],
+        max_samples=None,
     ),
 }
 

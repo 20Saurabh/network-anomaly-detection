@@ -41,6 +41,8 @@ def load_and_preprocess(
         df = _load_unsw_nb15(cfg)
     elif dataset_name == "cicids2017":
         df = _load_cicids2017(cfg)
+    elif dataset_name == "custom":
+        df = _load_custom(cfg)
     else:
         raise ValueError(f"Unknown dataset: {dataset_name}")
 
@@ -228,6 +230,16 @@ def _load_cicids2017(cfg) -> pd.DataFrame:
     if "Label" in df.columns:
         cfg.label_col = "Label"
     return df
+
+
+def _load_custom(cfg) -> pd.DataFrame:
+    """Load custom uploaded dataset."""
+    path = Path(cfg.train_file)
+    if not path.exists():
+        raise FileNotFoundError(
+            f"Custom dataset not found at {path}. Please upload a CSV file via the Streamlit app."
+        )
+    return pd.read_csv(str(path), low_memory=False)
 
 
 def _to_binary(y: pd.Series, dataset_name: str) -> pd.Series:

@@ -24,10 +24,10 @@ from collections import defaultdict
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import config
 from config import (
     DEVICE, SEEDS, set_seed, TRAINING_CONFIG, MODEL_CONFIGS,
-    TABULAR_MODELS, UNSUPERVISED_MODELS, RESULTS_DIR, METRICS_DIR,
-    MODELS_DIR, PLOTS_DIR
+    TABULAR_MODELS, UNSUPERVISED_MODELS, update_results_dir
 )
 from data.preprocessing import load_and_preprocess, generate_synthetic_dataset
 from data.dataloader import create_dataloaders
@@ -40,7 +40,7 @@ from visualization.plots import generate_all_plots
 def parse_args():
     parser = argparse.ArgumentParser(description="Network Anomaly Detection Benchmark")
     parser.add_argument("--dataset", type=str, default="synthetic",
-                        choices=["synthetic", "ciciot2023", "edge_iiot", "unsw_nb15", "cicids2017"],
+                        choices=["synthetic", "ciciot2023", "edge_iiot", "unsw_nb15", "cicids2017", "custom"],
                         help="Dataset to use")
     parser.add_argument("--models", nargs="+", default=None,
                         help="Models to train (default: all tabular)")
@@ -61,6 +61,8 @@ def parse_args():
                         help="Skip SHAP/feature importance (slow)")
     parser.add_argument("--skip-plots", action="store_true",
                         help="Skip plot generation")
+    parser.add_argument("--run-name", type=str, default=None,
+                        help="Unique name/timestamp for the run to save history (e.g. 2026-04-05_120000)")
     return parser.parse_args()
 
 
@@ -384,7 +386,7 @@ def main():
             print(f"  {' | '.join(row[h].ljust(w) for h, w in zip(headers, widths))}")
 
     # ── Save all results ─────────────────────────────────────────
-    all_results_path = METRICS_DIR / "all_results.json"
+    all_results_path = config.METRICS_DIR / "all_results.json"
     with open(all_results_path, "w") as f:
         json.dump(final_results, f, indent=2, default=str)
     print(f"\n  Results saved: {all_results_path}")
@@ -416,7 +418,7 @@ def main():
 
         if all_robustness:
             plot_robustness_curves(all_robustness)
-            rob_path = METRICS_DIR / "adversarial_robustness.json"
+            rob_path = config.METRICS_DIR / "adversarial_robustness.json"
             with open(rob_path, "w") as f:
                 json.dump(all_robustness, f, indent=2, default=str)
 
@@ -461,7 +463,7 @@ def main():
                 scaler=data.get("scaler")
             )
             stream_results = pipeline.simulate_stream(data["X_test"])
-            stream_path = METRICS_DIR / "streaming_results.json"
+            stream_path = config.METRICS_DIR / "streaming_results.json"
             with open(stream_path, "w") as f:
                 json.dump(stream_results, f, indent=2, default=str)
 
@@ -470,11 +472,19 @@ def main():
     print(f"\n{'='*60}")
     print(f"  EXPERIMENT COMPLETE")
     print(f"  Total time: {total_time:.1f}s ({total_time/60:.1f}min)")
-    print(f"  Results: {RESULTS_DIR}")
-    print(f"  Plots:   {PLOTS_DIR}")
-    print(f"  Metrics: {METRICS_DIR}")
+    print(f"  Results: {config.RESULTS_DIR}")
+    print(f"  Plots:   {config.PLOTS_DIR}")
+    print(f"  Metrics: {config.METRICS_DIR}")
     print(f"{'='*60}\n")
 
 
+
 if __name__ == "__main__":
+    import sys
+    args = parse_args()
+    if args.run_name:
+        update_results_dir(args.run_name)
+    # The original main() read from parse_args() internally or sys.argv
+    # Let me ensure main uses global args
+    sys.argv.extend([]) # Keep the parsing clean
     main()

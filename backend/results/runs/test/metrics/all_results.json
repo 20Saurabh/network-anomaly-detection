@@ -1,0 +1,36 @@
+{
+  "isolation_forest": {
+    "model_name": "isolation_forest",
+    "dataset": "Synthetic",
+    "num_test_samples": 1500,
+    "num_classes": 2,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "f1_macro": 1.0,
+    "f1_weighted": 1.0,
+    "auc_roc": 1.0,
+    "auc_pr": 1.0,
+    "detection_rate": 0.9999999999333333,
+    "false_alarm_rate": 0.0,
+    "true_negatives": 1350,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "true_positives": 150,
+    "inference_time_total": 0.19362330436706543,
+    "latency_ms_per_sample": 0.12908220291137695,
+    "throughput_samples_per_sec": 7747.00134833121,
+    "num_parameters": 20000,
+    "confusion_matrix": [
+      [
+        1350,
+        0
+      ],
+      [
+        0,
+        150
+      ]
+    ]
+  }
+}

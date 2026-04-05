@@ -1,0 +1,70 @@
+{
+  "ft_transformer": {
+    "model_name": "ft_transformer",
+    "dataset": "UNSW-NB15",
+    "num_test_samples": 1500,
+    "num_classes": 2,
+    "accuracy": 0.904,
+    "precision": 0.956964892412231,
+    "recall": 0.8885383806519453,
+    "f1_score": 0.9214830970556162,
+    "f1_macro": 0.8989919773442746,
+    "f1_weighted": 0.9050195974269142,
+    "auc_roc": 0.9789139607622309,
+    "auc_pr": 0.9880417674772647,
+    "detection_rate": 0.8885383806426022,
+    "false_alarm_rate": 0.06921675774008712,
+    "true_negatives": 511,
+    "false_positives": 38,
+    "false_negatives": 106,
+    "true_positives": 845,
+    "inference_time_total": 1.0616092681884766,
+    "latency_ms_per_sample": 0.707739512125651,
+    "throughput_samples_per_sec": 1412.9492318389332,
+    "num_parameters": 192705,
+    "confusion_matrix": [
+      [
+        511,
+        38
+      ],
+      [
+        106,
+        845
+      ]
+    ]
+  },
+  "cnn1d": {
+    "model_name": "cnn1d",
+    "dataset": "UNSW-NB15",
+    "num_test_samples": 1500,
+    "num_classes": 2,
+    "accuracy": 0.8933333333333333,
+    "precision": 0.972520908004779,
+    "recall": 0.8559411146161935,
+    "f1_score": 0.9105145413870246,
+    "f1_macro": 0.8892506700334463,
+    "f1_weighted": 0.8949493875562052,
+    "auc_roc": 0.9807890840626011,
+    "auc_pr": 0.9889451733544528,
+    "detection_rate": 0.855941114607193,
+    "false_alarm_rate": 0.041894353369000104,
+    "true_negatives": 526,
+    "false_positives": 23,
+    "false_negatives": 137,
+    "true_positives": 814,
+    "inference_time_total": 0.40451741218566895,
+    "latency_ms_per_sample": 0.269678274790446,
+    "throughput_samples_per_sec": 3708.1222088692607,
+    "num_parameters": 163906,
+    "confusion_matrix": [
+      [
+        526,
+        23
+      ],
+      [
+        137,
+        814
+      ]
+    ]
+  }
+}

@@ -146,7 +146,7 @@ def evaluate_adversarial_robustness(
             "f1_drop": float((clean_f1 - pgd_f1) / max(clean_f1, 1e-8) * 100),
         }
 
-        print(f"    ε={eps:.2f} | FGSM F1: {fgsm_f1:.4f} ({results['fgsm'][str(eps)]['f1_drop']:.1f}% drop) | "
+        print(f"    eps={eps:.2f} | FGSM F1: {fgsm_f1:.4f} ({results['fgsm'][str(eps)]['f1_drop']:.1f}% drop) | "
               f"PGD F1: {pgd_f1:.4f} ({results['pgd'][str(eps)]['f1_drop']:.1f}% drop)")
 
     return results
@@ -178,13 +178,13 @@ def plot_robustness_curves(all_robustness: Dict[str, Dict],
         ax2.plot([0] + eps_vals, [results["clean_f1"]] + pgd_f1s,
                 marker="s", label=name, color=color, linewidth=1.5, markersize=5)
 
-    ax1.set_xlabel("Perturbation ε")
+    ax1.set_xlabel("Perturbation (eps)")
     ax1.set_ylabel("F1-Score")
     ax1.set_title("FGSM Attack Robustness")
     ax1.legend(loc="lower left", fontsize=8)
     ax1.set_ylim(0, 1.05)
 
-    ax2.set_xlabel("Perturbation ε")
+    ax2.set_xlabel("Perturbation (eps)")
     ax2.set_ylabel("F1-Score")
     ax2.set_title("PGD Attack Robustness")
     ax2.legend(loc="lower left", fontsize=8)
