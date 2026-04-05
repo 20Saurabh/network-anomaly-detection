@@ -1,1 +1,23 @@
-node_modules/
+# Datasets (Extremely large files)
+backend/data/raw/
+backend/data/processed/
+
+# Results & Checkpoints
+backend/results/models/
+backend/results/metrics/
+backend/results/plots/
+*.pt
+*.pth
+
+# Python Environment
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Legacy/Misc
+frontend/node_modules/
+frontend/dist/
+.DS_Store
