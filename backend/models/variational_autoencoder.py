@@ -51,7 +51,6 @@ class VariationalAutoencoder(BaseModel):
                 nn.Dropout(dropout),
             ])
         decoder_layers.append(nn.Linear(reversed_dims[-1], input_dim))
-        decoder_layers.append(nn.Sigmoid())
         self.decoder = nn.Sequential(*decoder_layers)
 
     def encode(self, x):

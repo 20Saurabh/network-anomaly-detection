@@ -244,14 +244,22 @@ def _load_custom(cfg) -> pd.DataFrame:
 
 def _to_binary(y: pd.Series, dataset_name: str) -> pd.Series:
     """Convert multi-class labels to binary (0=benign, 1=attack)."""
-    y = y.astype(str).str.strip().str.lower()
+    # Handle different label formats
+    if y.dtype in ['int64', 'int32', 'float64', 'float32']:
+        # For numeric labels, treat 0 as benign, everything else as attack
+        result = (y != 0).astype(int)
+    else:
+        # For string labels, convert to string and check against benign set
+        y_str = y.astype(str).str.strip().str.lower()
 
-    benign_labels = {
-        "benign", "normal", "0", "0.0",
-        "nan", "",
-    }
+        benign_labels = {
+            "benign", "normal", "0", "0.0",
+            "nan", "", "false", "f",
+        }
 
-    return y.apply(lambda x: 0 if x in benign_labels else 1)
+        result = y_str.apply(lambda x: 0 if x in benign_labels else 1)
+
+    return result
 
 
 def generate_synthetic_dataset(

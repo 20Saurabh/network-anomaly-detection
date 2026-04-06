@@ -106,6 +106,10 @@ def compute_permutation_importance(
 
     print(f"  [PERM] Computing permutation importance for {model_name}...")
 
+    # Detect actual number of classes to handle edge cases
+    actual_num_classes = len(np.unique(y_test))
+    avg = "binary" if actual_num_classes == 2 else "macro"
+
     # Get baseline predictions
     if isinstance(model, BaseSklearnModel):
         y_base = model.predict(X_test)
@@ -118,7 +122,7 @@ def compute_permutation_importance(
                 out = out[0]
             y_base = out.argmax(dim=-1).cpu().numpy()
 
-    base_f1 = f1(y_test, y_base, average="binary", zero_division=0)
+    base_f1 = f1(y_test, y_base, average=avg, zero_division=0)
 
     importances = []
     for i in range(X_test.shape[1]):
@@ -137,7 +141,7 @@ def compute_permutation_importance(
                         out = out[0]
                     y_perm = out.argmax(dim=-1).cpu().numpy()
 
-            perm_f1 = f1(y_test, y_perm, average="binary", zero_division=0)
+            perm_f1 = f1(y_test, y_perm, average=avg, zero_division=0)
             drops.append(base_f1 - perm_f1)
 
         importances.append({

@@ -52,7 +52,9 @@ def evaluate_model(
         inference_time = time.time() - start_time
 
     # ── Tier 1: Standard metrics ──────────────────────────────────
-    avg = "binary" if num_classes == 2 else "macro"
+    # Detect actual number of classes in the data to handle edge cases
+    actual_num_classes = len(np.unique(y_true))
+    avg = "binary" if actual_num_classes == 2 else "macro"
 
     metrics = {
         "model_name": model_name,

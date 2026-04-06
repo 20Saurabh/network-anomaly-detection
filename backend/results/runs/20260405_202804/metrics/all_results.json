@@ -1,0 +1,342 @@
+{
+  "ft_transformer": {
+    "model_name": "ft_transformer",
+    "dataset": "UNSW-NB15",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 0.9226666666666666,
+    "precision": 0.9663337032926378,
+    "recall": 0.9104217497385849,
+    "f1_score": 0.9375448671931084,
+    "f1_macro": 0.9180139738532636,
+    "f1_weighted": 0.923387139620981,
+    "auc_roc": 0.9835980039061072,
+    "auc_pr": 0.9910173784941267,
+    "detection_rate": 0.9104217497354116,
+    "false_alarm_rate": 0.05579399141596693,
+    "true_negatives": 1540,
+    "false_positives": 91,
+    "false_negatives": 257,
+    "true_positives": 2612,
+    "inference_time_total": 2.839768648147583,
+    "latency_ms_per_sample": 0.6310596995883517,
+    "throughput_samples_per_sec": 1584.6361297549386,
+    "num_parameters": 192705,
+    "confusion_matrix": [
+      [
+        1540,
+        91
+      ],
+      [
+        257,
+        2612
+      ]
+    ]
+  },
+  "cnn1d": {
+    "model_name": "cnn1d",
+    "dataset": "UNSW-NB15",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 0.9282222222222222,
+    "precision": 0.9680147058823529,
+    "recall": 0.9177413733008016,
+    "f1_score": 0.9422079083914833,
+    "f1_macro": 0.9237571350811125,
+    "f1_weighted": 0.9288331478273879,
+    "auc_roc": 0.985734844173504,
+    "auc_pr": 0.992138381965914,
+    "detection_rate": 0.9177413732976029,
+    "false_alarm_rate": 0.05334150827680355,
+    "true_negatives": 1544,
+    "false_positives": 87,
+    "false_negatives": 236,
+    "true_positives": 2633,
+    "inference_time_total": 1.2104206085205078,
+    "latency_ms_per_sample": 0.26898235744900173,
+    "throughput_samples_per_sec": 3717.7159479301426,
+    "num_parameters": 163906,
+    "confusion_matrix": [
+      [
+        1544,
+        87
+      ],
+      [
+        236,
+        2633
+      ]
+    ]
+  },
+  "bilstm_attention": {
+    "model_name": "bilstm_attention",
+    "dataset": "UNSW-NB15",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 0.9008888888888889,
+    "precision": 0.9734271199687378,
+    "recall": 0.8682467758800976,
+    "f1_score": 0.9178334561532793,
+    "f1_macro": 0.8964867168784314,
+    "f1_weighted": 0.902359442038934,
+    "auc_roc": 0.980537528911669,
+    "auc_pr": 0.989093332376747,
+    "detection_rate": 0.8682467758770713,
+    "false_alarm_rate": 0.04169221336577749,
+    "true_negatives": 1563,
+    "false_positives": 68,
+    "false_negatives": 378,
+    "true_positives": 2491,
+    "inference_time_total": 0.2615818977355957,
+    "latency_ms_per_sample": 0.058129310607910156,
+    "throughput_samples_per_sec": 17203.02528177448,
+    "num_parameters": 945218,
+    "confusion_matrix": [
+      [
+        1563,
+        68
+      ],
+      [
+        378,
+        2491
+      ]
+    ]
+  },
+  "vanilla_ae": {
+    "model_name": "vanilla_ae",
+    "dataset": "UNSW-NB15",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 0.3571111111111111,
+    "precision": 0.2777777777777778,
+    "recall": 0.005228302544440571,
+    "f1_score": 0.010263427984946972,
+    "f1_macro": 0.2671030814435184,
+    "f1_weighted": 0.19644363900313808,
+    "auc_roc": 0.32676677197356296,
+    "auc_pr": 0.5381749324702584,
+    "detection_rate": 0.005228302544422348,
+    "false_alarm_rate": 0.02391171060684297,
+    "true_negatives": 1592,
+    "false_positives": 39,
+    "false_negatives": 2854,
+    "true_positives": 15,
+    "inference_time_total": 0.015996694564819336,
+    "latency_ms_per_sample": 0.003554821014404297,
+    "throughput_samples_per_sec": 281308.1153588196,
+    "num_parameters": 11162,
+    "confusion_matrix": [
+      [
+        1592,
+        39
+      ],
+      [
+        2854,
+        15
+      ]
+    ]
+  },
+  "vae": {
+    "model_name": "vae",
+    "dataset": "UNSW-NB15",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 0.3566666666666667,
+    "precision": 0.25925925925925924,
+    "recall": 0.004879749041477867,
+    "f1_score": 0.009579199452617175,
+    "f1_macro": 0.2665964122983014,
+    "f1_weighted": 0.19588812129764424,
+    "auc_roc": 0.2947721889779732,
+    "auc_pr": 0.5248949039016728,
+    "detection_rate": 0.004879749041460858,
+    "false_alarm_rate": 0.024524831391633816,
+    "true_negatives": 1591,
+    "false_positives": 40,
+    "false_negatives": 2855,
+    "true_positives": 14,
+    "inference_time_total": 0.011000633239746094,
+    "latency_ms_per_sample": 0.002444585164388021,
+    "throughput_samples_per_sec": 409067.3602080624,
+    "num_parameters": 11658,
+    "confusion_matrix": [
+      [
+        1591,
+        40
+      ],
+      [
+        2855,
+        14
+      ]
+    ]
+  },
+  "cnn_lstm": {
+    "model_name": "cnn_lstm",
+    "dataset": "UNSW-NB15",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 0.91,
+    "precision": 0.9716692189892803,
+    "recall": 0.8846287905193447,
+    "f1_score": 0.9261083743842364,
+    "f1_macro": 0.9055094301588702,
+    "f1_weighted": 0.9111764285924265,
+    "auc_roc": 0.9827665830579916,
+    "auc_pr": 0.9902353450372683,
+    "detection_rate": 0.8846287905162613,
+    "false_alarm_rate": 0.04537093807452256,
+    "true_negatives": 1557,
+    "false_positives": 74,
+    "false_negatives": 331,
+    "true_positives": 2538,
+    "inference_time_total": 0.9347715377807617,
+    "latency_ms_per_sample": 0.2077270083957248,
+    "throughput_samples_per_sec": 4814.010502163381,
+    "num_parameters": 228098,
+    "confusion_matrix": [
+      [
+        1557,
+        74
+      ],
+      [
+        331,
+        2538
+      ]
+    ]
+  },
+  "e_graphsage": {
+    "model_name": "e_graphsage",
+    "dataset": "UNSW-NB15",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 0.892,
+    "precision": 0.9802498992341797,
+    "recall": 0.847682119205298,
+    "f1_score": 0.9091588785046729,
+    "f1_macro": 0.888004096786583,
+    "f1_weighted": 0.8938240122903598,
+    "auc_roc": 0.9796381497472187,
+    "auc_pr": 0.9880063866365478,
+    "detection_rate": 0.8476821192023434,
+    "false_alarm_rate": 0.030042918454751426,
+    "true_negatives": 1582,
+    "false_positives": 49,
+    "false_negatives": 437,
+    "true_positives": 2432,
+    "inference_time_total": 0.010953664779663086,
+    "latency_ms_per_sample": 0.002434147728814019,
+    "throughput_samples_per_sec": 410821.4091374094,
+    "num_parameters": 14274,
+    "confusion_matrix": [
+      [
+        1582,
+        49
+      ],
+      [
+        437,
+        2432
+      ]
+    ]
+  },
+  "gnn_transformer": {
+    "model_name": "gnn_transformer",
+    "dataset": "UNSW-NB15",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 0.9164444444444444,
+    "precision": 0.9584406031629276,
+    "recall": 0.9083304287208086,
+    "f1_score": 0.9327129563350036,
+    "f1_macro": 0.9112568298673847,
+    "f1_weighted": 0.9171596486600317,
+    "auc_roc": 0.9815945158066129,
+    "auc_pr": 0.9897563628793992,
+    "detection_rate": 0.9083304287176427,
+    "false_alarm_rate": 0.06928264868136554,
+    "true_negatives": 1518,
+    "false_positives": 113,
+    "false_negatives": 263,
+    "true_positives": 2606,
+    "inference_time_total": 0.08619332313537598,
+    "latency_ms_per_sample": 0.019154071807861328,
+    "throughput_samples_per_sec": 52208.22026936195,
+    "num_parameters": 118594,
+    "confusion_matrix": [
+      [
+        1518,
+        113
+      ],
+      [
+        263,
+        2606
+      ]
+    ]
+  },
+  "contrastive_ssl": {
+    "model_name": "contrastive_ssl",
+    "dataset": "UNSW-NB15",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 0.8917777777777778,
+    "precision": 0.9420935412026726,
+    "recall": 0.8846287905193447,
+    "f1_score": 0.9124573072083408,
+    "f1_macro": 0.8853819849978277,
+    "f1_weighted": 0.8928307069748532,
+    "auc_roc": 0.9715849824088403,
+    "auc_pr": 0.9836090118073543,
+    "detection_rate": 0.8846287905162613,
+    "false_alarm_rate": 0.09564684242737188,
+    "true_negatives": 1475,
+    "false_positives": 156,
+    "false_negatives": 331,
+    "true_positives": 2538,
+    "inference_time_total": 0.017669200897216797,
+    "latency_ms_per_sample": 0.003926489088270399,
+    "throughput_samples_per_sec": 254680.44798272836,
+    "num_parameters": 258,
+    "confusion_matrix": [
+      [
+        1475,
+        156
+      ],
+      [
+        331,
+        2538
+      ]
+    ]
+  },
+  "isolation_forest": {
+    "model_name": "isolation_forest",
+    "dataset": "UNSW-NB15",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 0.3615555555555556,
+    "precision": 0.4863013698630137,
+    "recall": 0.02474729871035204,
+    "f1_score": 0.04709784411276949,
+    "f1_macro": 0.2835322136186237,
+    "f1_weighted": 0.21848649151901312,
+    "auc_roc": 0.293001426056116,
+    "auc_pr": 0.5283352506816945,
+    "detection_rate": 0.02474729871026578,
+    "false_alarm_rate": 0.045984058859313406,
+    "true_negatives": 1556,
+    "false_positives": 75,
+    "false_negatives": 2798,
+    "true_positives": 71,
+    "inference_time_total": 0.2235109806060791,
+    "latency_ms_per_sample": 0.049669106801350914,
+    "throughput_samples_per_sec": 20133.239037284275,
+    "num_parameters": 20000,
+    "confusion_matrix": [
+      [
+        1556,
+        75
+      ],
+      [
+        2798,
+        71
+      ]
+    ]
+  }
+}

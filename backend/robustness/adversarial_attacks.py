@@ -102,13 +102,22 @@ def evaluate_adversarial_robustness(
     model = model.to(device)
     model.eval()
 
+    # Detect actual number of classes to handle edge cases
+    actual_num_classes = len(np.unique(y_sub))
+    avg = "binary" if actual_num_classes == 2 else "macro"
+
     # Clean accuracy
     with torch.no_grad():
         clean_out = model(x_tensor)
         if isinstance(clean_out, tuple):
             clean_out = clean_out[0]
-        clean_preds = clean_out.argmax(dim=-1).cpu().numpy()
-    clean_f1 = f1_score(y_sub, clean_preds, average="binary", zero_division=0)
+        if hasattr(model, 'model_type') and model.model_type == "unsupervised":
+            scores = model.get_anomaly_scores(x_tensor)
+            threshold = np.percentile(scores.cpu().numpy(), 95)  # Top 5% as anomalies
+            clean_preds = (scores.cpu().numpy() > threshold).astype(int)
+        else:
+            clean_preds = clean_out.argmax(dim=-1).cpu().numpy()
+    clean_f1 = f1_score(y_sub, clean_preds, average=avg, zero_division=0)
 
     results = {
         "model_name": model_name,
@@ -126,8 +135,12 @@ def evaluate_adversarial_robustness(
             fgsm_out = model(x_fgsm)
             if isinstance(fgsm_out, tuple):
                 fgsm_out = fgsm_out[0]
-            fgsm_preds = fgsm_out.argmax(dim=-1).cpu().numpy()
-        fgsm_f1 = f1_score(y_sub, fgsm_preds, average="binary", zero_division=0)
+            if hasattr(model, 'model_type') and model.model_type == "unsupervised":
+                fgsm_scores = model.get_anomaly_scores(x_fgsm)
+                fgsm_preds = (fgsm_scores.cpu().numpy() > threshold).astype(int)
+            else:
+                fgsm_preds = fgsm_out.argmax(dim=-1).cpu().numpy()
+        fgsm_f1 = f1_score(y_sub, fgsm_preds, average=avg, zero_division=0)
         results["fgsm"][str(eps)] = {
             "f1": float(fgsm_f1),
             "f1_drop": float((clean_f1 - fgsm_f1) / max(clean_f1, 1e-8) * 100),
@@ -139,8 +152,12 @@ def evaluate_adversarial_robustness(
             pgd_out = model(x_pgd)
             if isinstance(pgd_out, tuple):
                 pgd_out = pgd_out[0]
-            pgd_preds = pgd_out.argmax(dim=-1).cpu().numpy()
-        pgd_f1 = f1_score(y_sub, pgd_preds, average="binary", zero_division=0)
+            if hasattr(model, 'model_type') and model.model_type == "unsupervised":
+                pgd_scores = model.get_anomaly_scores(x_pgd)
+                pgd_preds = (pgd_scores.cpu().numpy() > threshold).astype(int)
+            else:
+                pgd_preds = pgd_out.argmax(dim=-1).cpu().numpy()
+        pgd_f1 = f1_score(y_sub, pgd_preds, average=avg, zero_division=0)
         results["pgd"][str(eps)] = {
             "f1": float(pgd_f1),
             "f1_drop": float((clean_f1 - pgd_f1) / max(clean_f1, 1e-8) * 100),

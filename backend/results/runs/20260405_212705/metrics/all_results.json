@@ -1,0 +1,342 @@
+{
+  "ft_transformer": {
+    "model_name": "ft_transformer",
+    "dataset": "Synthetic",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "f1_macro": 1.0,
+    "f1_weighted": 1.0,
+    "auc_roc": 1.0,
+    "auc_pr": 1.0,
+    "detection_rate": 0.9999999999777778,
+    "false_alarm_rate": 0.0,
+    "true_negatives": 4050,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "true_positives": 450,
+    "inference_time_total": 4.799297332763672,
+    "latency_ms_per_sample": 1.0665105183919272,
+    "throughput_samples_per_sec": 937.6372597879194,
+    "num_parameters": 193217,
+    "confusion_matrix": [
+      [
+        4050,
+        0
+      ],
+      [
+        0,
+        450
+      ]
+    ]
+  },
+  "cnn1d": {
+    "model_name": "cnn1d",
+    "dataset": "Synthetic",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "f1_macro": 1.0,
+    "f1_weighted": 1.0,
+    "auc_roc": 1.0,
+    "auc_pr": 1.0,
+    "detection_rate": 0.9999999999777778,
+    "false_alarm_rate": 0.0,
+    "true_negatives": 4050,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "true_positives": 450,
+    "inference_time_total": 1.5058438777923584,
+    "latency_ms_per_sample": 0.3346319728427463,
+    "throughput_samples_per_sec": 2988.3576022483967,
+    "num_parameters": 163906,
+    "confusion_matrix": [
+      [
+        4050,
+        0
+      ],
+      [
+        0,
+        450
+      ]
+    ]
+  },
+  "bilstm_attention": {
+    "model_name": "bilstm_attention",
+    "dataset": "Synthetic",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "f1_macro": 1.0,
+    "f1_weighted": 1.0,
+    "auc_roc": 1.0,
+    "auc_pr": 1.0,
+    "detection_rate": 0.9999999999777778,
+    "false_alarm_rate": 0.0,
+    "true_negatives": 4050,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "true_positives": 450,
+    "inference_time_total": 0.3336455821990967,
+    "latency_ms_per_sample": 0.07414346271091037,
+    "throughput_samples_per_sec": 13487.36575602164,
+    "num_parameters": 945730,
+    "confusion_matrix": [
+      [
+        4050,
+        0
+      ],
+      [
+        0,
+        450
+      ]
+    ]
+  },
+  "vanilla_ae": {
+    "model_name": "vanilla_ae",
+    "dataset": "Synthetic",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 0.9866666666666667,
+    "precision": 1.0,
+    "recall": 0.8666666666666667,
+    "f1_score": 0.9285714285714286,
+    "f1_macro": 0.960609243697479,
+    "f1_weighted": 0.9862394957983193,
+    "auc_roc": 1.0,
+    "auc_pr": 1.0,
+    "detection_rate": 0.8666666666474074,
+    "false_alarm_rate": 0.0,
+    "true_negatives": 4050,
+    "false_positives": 0,
+    "false_negatives": 60,
+    "true_positives": 390,
+    "inference_time_total": 0.030998945236206055,
+    "latency_ms_per_sample": 0.0068886544969346784,
+    "throughput_samples_per_sec": 145166.22955106563,
+    "num_parameters": 11678,
+    "confusion_matrix": [
+      [
+        4050,
+        0
+      ],
+      [
+        60,
+        390
+      ]
+    ]
+  },
+  "vae": {
+    "model_name": "vae",
+    "dataset": "Synthetic",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 0.9868888888888889,
+    "precision": 1.0,
+    "recall": 0.8688888888888889,
+    "f1_score": 0.929845422116528,
+    "f1_macro": 0.9613070718867969,
+    "f1_weighted": 0.986476391703012,
+    "auc_roc": 0.9999379972565158,
+    "auc_pr": 0.9994308638630007,
+    "detection_rate": 0.8688888888695803,
+    "false_alarm_rate": 0.0,
+    "true_negatives": 4050,
+    "false_positives": 0,
+    "false_negatives": 59,
+    "true_positives": 391,
+    "inference_time_total": 0.021012544631958008,
+    "latency_ms_per_sample": 0.004669454362657335,
+    "throughput_samples_per_sec": 214157.78425788297,
+    "num_parameters": 12174,
+    "confusion_matrix": [
+      [
+        4050,
+        0
+      ],
+      [
+        59,
+        391
+      ]
+    ]
+  },
+  "cnn_lstm": {
+    "model_name": "cnn_lstm",
+    "dataset": "Synthetic",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "f1_macro": 1.0,
+    "f1_weighted": 1.0,
+    "auc_roc": 1.0,
+    "auc_pr": 1.0,
+    "detection_rate": 0.9999999999777778,
+    "false_alarm_rate": 0.0,
+    "true_negatives": 4050,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "true_positives": 450,
+    "inference_time_total": 1.1544532775878906,
+    "latency_ms_per_sample": 0.25654517279730904,
+    "throughput_samples_per_sec": 3897.949000935126,
+    "num_parameters": 228098,
+    "confusion_matrix": [
+      [
+        4050,
+        0
+      ],
+      [
+        0,
+        450
+      ]
+    ]
+  },
+  "e_graphsage": {
+    "model_name": "e_graphsage",
+    "dataset": "Synthetic",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "f1_macro": 1.0,
+    "f1_weighted": 1.0,
+    "auc_roc": 1.0,
+    "auc_pr": 1.0,
+    "detection_rate": 0.9999999999777778,
+    "false_alarm_rate": 0.0,
+    "true_negatives": 4050,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "true_positives": 450,
+    "inference_time_total": 0.010002613067626953,
+    "latency_ms_per_sample": 0.0022228029039171007,
+    "throughput_samples_per_sec": 449882.44267531106,
+    "num_parameters": 14786,
+    "confusion_matrix": [
+      [
+        4050,
+        0
+      ],
+      [
+        0,
+        450
+      ]
+    ]
+  },
+  "gnn_transformer": {
+    "model_name": "gnn_transformer",
+    "dataset": "Synthetic",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "f1_macro": 1.0,
+    "f1_weighted": 1.0,
+    "auc_roc": 1.0,
+    "auc_pr": 1.0,
+    "detection_rate": 0.9999999999777778,
+    "false_alarm_rate": 0.0,
+    "true_negatives": 4050,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "true_positives": 450,
+    "inference_time_total": 0.09710216522216797,
+    "latency_ms_per_sample": 0.02157825893825955,
+    "throughput_samples_per_sec": 46342.94188707412,
+    "num_parameters": 119106,
+    "confusion_matrix": [
+      [
+        4050,
+        0
+      ],
+      [
+        0,
+        450
+      ]
+    ]
+  },
+  "contrastive_ssl": {
+    "model_name": "contrastive_ssl",
+    "dataset": "Synthetic",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "f1_macro": 1.0,
+    "f1_weighted": 1.0,
+    "auc_roc": 1.0,
+    "auc_pr": 1.0,
+    "detection_rate": 0.9999999999777778,
+    "false_alarm_rate": 0.0,
+    "true_negatives": 4050,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "true_positives": 450,
+    "inference_time_total": 0.07661652565002441,
+    "latency_ms_per_sample": 0.01702589458889431,
+    "throughput_samples_per_sec": 58734.06503128958,
+    "num_parameters": 258,
+    "confusion_matrix": [
+      [
+        4050,
+        0
+      ],
+      [
+        0,
+        450
+      ]
+    ]
+  },
+  "isolation_forest": {
+    "model_name": "isolation_forest",
+    "dataset": "Synthetic",
+    "num_test_samples": 4500,
+    "num_classes": 2,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "f1_macro": 1.0,
+    "f1_weighted": 1.0,
+    "auc_roc": 1.0,
+    "auc_pr": 1.0,
+    "detection_rate": 0.9999999999777778,
+    "false_alarm_rate": 0.0,
+    "true_negatives": 4050,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "true_positives": 450,
+    "inference_time_total": 0.3778665065765381,
+    "latency_ms_per_sample": 0.08397033479478624,
+    "throughput_samples_per_sec": 11908.967642488076,
+    "num_parameters": 20000,
+    "confusion_matrix": [
+      [
+        4050,
+        0
+      ],
+      [
+        0,
+        450
+      ]
+    ]
+  }
+}
