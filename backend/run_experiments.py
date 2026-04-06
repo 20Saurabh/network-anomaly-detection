@@ -443,7 +443,8 @@ def main():
                 data["X_test"][:1000],
                 data["y_test"][:1000],
                 data["feature_names"],
-                best_model_name
+                best_model_name,
+                num_classes=data["num_classes"]
             )
 
     # ── Streaming Simulation ─────────────────────────────────────

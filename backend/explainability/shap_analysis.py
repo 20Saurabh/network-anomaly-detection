@@ -54,6 +54,11 @@ def compute_shap_values(
         def predict_fn(x):
             with torch.no_grad():
                 t = torch.FloatTensor(x).to(DEVICE)
+                if hasattr(model, 'model_type') and model.model_type == "unsupervised":
+                    # For unsupervised, return anomaly scores as a 2-column probability-like matrix
+                    scores = model.get_anomaly_scores(t) # This returns a numpy array
+                    return np.column_stack([1 - scores, scores])
+                
                 out = model(t)
                 if isinstance(out, tuple):
                     out = out[0]
@@ -95,6 +100,7 @@ def compute_permutation_importance(
     y_test: np.ndarray,
     feature_names: list,
     model_name: str,
+    num_classes: int = 2,
     n_repeats: int = 5,
 ):
     """
@@ -106,9 +112,12 @@ def compute_permutation_importance(
 
     print(f"  [PERM] Computing permutation importance for {model_name}...")
 
-    # Detect actual number of classes to handle edge cases
-    actual_num_classes = len(np.unique(y_test))
-    avg = "binary" if actual_num_classes == 2 else "macro"
+    # Determine average parameter for f1_score
+    unique_y = np.unique(y_test)
+    if num_classes == 2 and set(unique_y).issubset({0, 1}):
+        avg = "binary"
+    else:
+        avg = "macro"
 
     # Get baseline predictions
     if isinstance(model, BaseSklearnModel):
@@ -117,10 +126,21 @@ def compute_permutation_importance(
         model.eval()
         with torch.no_grad():
             t = torch.FloatTensor(X_test).to(DEVICE)
-            out = model(t)
-            if isinstance(out, tuple):
-                out = out[0]
-            y_base = out.argmax(dim=-1).cpu().numpy()
+            if hasattr(model, 'model_type') and model.model_type == "unsupervised":
+                scores = model.get_anomaly_scores(t)
+                threshold = np.percentile(scores, 95)
+                y_base = (scores > threshold).astype(int)
+            else:
+                out = model(t)
+                if isinstance(out, tuple):
+                    out = out[0]
+                y_base = out.argmax(dim=-1).cpu().numpy()
+
+    # Final safety check for average='binary'
+    if avg == "binary":
+        unique_preds = np.unique(y_base)
+        if not set(unique_preds).issubset({0, 1}):
+            avg = "macro"
 
     base_f1 = f1(y_test, y_base, average=avg, zero_division=0)
 
@@ -136,10 +156,14 @@ def compute_permutation_importance(
             else:
                 with torch.no_grad():
                     t = torch.FloatTensor(X_perm).to(DEVICE)
-                    out = model(t)
-                    if isinstance(out, tuple):
-                        out = out[0]
-                    y_perm = out.argmax(dim=-1).cpu().numpy()
+                    if hasattr(model, 'model_type') and model.model_type == "unsupervised":
+                        scores_perm = model.get_anomaly_scores(t)
+                        y_perm = (scores_perm > threshold).astype(int)
+                    else:
+                        out = model(t)
+                        if isinstance(out, tuple):
+                            out = out[0]
+                        y_perm = out.argmax(dim=-1).cpu().numpy()
 
             perm_f1 = f1(y_test, y_perm, average=avg, zero_division=0)
             drops.append(base_f1 - perm_f1)
