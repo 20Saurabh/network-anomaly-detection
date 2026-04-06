@@ -76,6 +76,7 @@ def evaluate_adversarial_robustness(
     X_test: np.ndarray,
     y_test: np.ndarray,
     model_name: str,
+    num_classes: int = 2,
     epsilons: List[float] = None,
     device: torch.device = DEVICE,
     max_samples: int = 2000,
@@ -102,22 +103,36 @@ def evaluate_adversarial_robustness(
     model = model.to(device)
     model.eval()
 
-    # Detect actual number of classes to handle edge cases
-    actual_num_classes = len(np.unique(y_sub))
-    avg = "binary" if actual_num_classes == 2 else "macro"
-
+    # Determine average parameter for f1_score
+    # In a research benchmark, 'macro' is generally safer and more informative for multiclass,
+    # while 'binary' is only for [0, 1] labels.
+    unique_y = np.unique(y_sub)
+    if num_classes == 2 and set(unique_y).issubset({0, 1}):
+        avg = "binary"
+    else:
+        avg = "macro"
+    
     # Clean accuracy
     with torch.no_grad():
         clean_out = model(x_tensor)
         if isinstance(clean_out, tuple):
             clean_out = clean_out[0]
+        
         if hasattr(model, 'model_type') and model.model_type == "unsupervised":
             scores = model.get_anomaly_scores(x_tensor)
-            threshold = np.percentile(scores.cpu().numpy(), 95)  # Top 5% as anomalies
-            clean_preds = (scores.cpu().numpy() > threshold).astype(int)
+            threshold = np.percentile(scores, 95)  # Top 5% as anomalies
+            clean_preds = (scores > threshold).astype(int)
         else:
             clean_preds = clean_out.argmax(dim=-1).cpu().numpy()
+    
+    # Final safety check for average='binary' - both true and pred must be binary
+    if avg == "binary":
+        unique_preds = np.unique(clean_preds)
+        if not set(unique_preds).issubset({0, 1}):
+            avg = "macro"
+            
     clean_f1 = f1_score(y_sub, clean_preds, average=avg, zero_division=0)
+
 
     results = {
         "model_name": model_name,
@@ -137,7 +152,7 @@ def evaluate_adversarial_robustness(
                 fgsm_out = fgsm_out[0]
             if hasattr(model, 'model_type') and model.model_type == "unsupervised":
                 fgsm_scores = model.get_anomaly_scores(x_fgsm)
-                fgsm_preds = (fgsm_scores.cpu().numpy() > threshold).astype(int)
+                fgsm_preds = (fgsm_scores > threshold).astype(int)
             else:
                 fgsm_preds = fgsm_out.argmax(dim=-1).cpu().numpy()
         fgsm_f1 = f1_score(y_sub, fgsm_preds, average=avg, zero_division=0)
@@ -154,7 +169,7 @@ def evaluate_adversarial_robustness(
                 pgd_out = pgd_out[0]
             if hasattr(model, 'model_type') and model.model_type == "unsupervised":
                 pgd_scores = model.get_anomaly_scores(x_pgd)
-                pgd_preds = (pgd_scores.cpu().numpy() > threshold).astype(int)
+                pgd_preds = (pgd_scores > threshold).astype(int)
             else:
                 pgd_preds = pgd_out.argmax(dim=-1).cpu().numpy()
         pgd_f1 = f1_score(y_sub, pgd_preds, average=avg, zero_division=0)

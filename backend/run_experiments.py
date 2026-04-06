@@ -411,7 +411,8 @@ def main():
         all_robustness = {}
         for model_name, model in final_models.items():
             rob = evaluate_adversarial_robustness(
-                model, data["X_test"], data["y_test"], model_name
+                model, data["X_test"], data["y_test"], model_name,
+                num_classes=data["num_classes"]
             )
             if rob:
                 all_robustness[model_name] = rob
