@@ -27,7 +27,13 @@ def fgsm_attack(model, x, y, epsilon, device=DEVICE):
     x_adv = x.clone().detach().to(device).requires_grad_(True)
     y = y.to(device)
 
-    model.eval()
+    # RNN/CuDNN requires train() mode for backward pass
+    model.train()
+    # But we want dropout and batchnorm to stay in eval mode for a realistic attack
+    for m in model.modules():
+        if "Dropout" in m.__class__.__name__ or "BatchNorm" in m.__class__.__name__:
+            m.eval()
+
     output = model(x_adv)
     if isinstance(output, tuple):
         output = output[0]
@@ -53,7 +59,12 @@ def pgd_attack(model, x, y, epsilon, steps=PGD_STEPS,
     for _ in range(steps):
         x_adv.requires_grad_(True)
 
-        model.eval()
+        # RNN/CuDNN requires train() mode for backward pass
+        model.train()
+        for m in model.modules():
+            if "Dropout" in m.__class__.__name__ or "BatchNorm" in m.__class__.__name__:
+                m.eval()
+
         output = model(x_adv)
         if isinstance(output, tuple):
             output = output[0]
