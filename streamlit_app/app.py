@@ -240,7 +240,7 @@ if page == "Dashboard":
             
             with col1:
                 best_f1_idx = df['f1_score'].idxmax()
-                best_f1 = df.loc[best_f1_idx, 'f1_score']
+                best_f1 = df.loc[best_f1_idx, 'f1_score']                
                 best_f1_model = df.loc[best_f1_idx, 'Model']
                 st.metric("Best F1 Score", f"{best_f1:.4f}", best_f1_model, label_visibility="visible")
             
@@ -426,12 +426,12 @@ elif page == "Run Benchmark":
     
     col1, col2 = st.columns(2)
     
-    with col1:
-        dataset = st.selectbox(
-            "Select Dataset",
-            ["synthetic", "unsw_nb15", "ciciot2023", "edge_iiot", "cicids2017", "custom"],
-            help="Choose dataset for benchmarking"
-        )
+   with col1:
+    dataset = st.selectbox(
+        "Select Dataset",
+        ["synthetic", "unsw_nb15", "ciciot2023", "edge_iiot", "cicids2017", "custom"],
+        help="Choose dataset for benchmarking"  # line 433
+    )
         
         epochs = st.number_input(
             "Epochs",

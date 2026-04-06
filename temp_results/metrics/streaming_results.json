@@ -1,0 +1,9 @@
+{
+  "total_processed": 750,
+  "total_anomalies": 56,
+  "avg_latency_ms": 1.9334679996063642,
+  "avg_throughput": 187283.27425255056,
+  "max_latency_ms": 2.273432999572833,
+  "drift_events": 0,
+  "drift_details": []
+}
