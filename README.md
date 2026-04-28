@@ -1,3 +1,4 @@
+<!-- <img width="1024" height="559" alt="eeea979d-b2f3-40fd-8eee-1b706dfad04e" src="https://github.com/user-attachments/assets/00a3b178-f9d6-4e9f-b1c4-c7e9297edc42" /> -->
 # NetGuard: A Unified Benchmark for Next-Generation Network Anomaly Detection
 
 > **A comprehensive research framework** for evaluating state-of-the-art deep learning, graph neural network, and self-supervised architectures for network intrusion detection — with adversarial robustness testing, explainability, and real-time adaptive inference.
@@ -59,47 +60,7 @@ Network Intrusion Detection Systems (NIDS) are critical for protecting modern ne
 
 ## System Architecture
 
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                         DATA LAYER                               │
-│  CICIoT2023 (47M flows) │ Edge-IIoTset │ UNSW-NB15 │ CIC-IDS2017│
-└──────────────┬───────────────────────────────────────────────────┘
-               │
-┌──────────────▼───────────────────────────────────────────────────┐
-│                      PREPROCESSING                               │
-│  Unified Feature Extraction │ Graph Construction │ Normalization  │
-└──────────────┬───────────────────────────────────────────────────┘
-               │
-┌──────────────▼───────────────────────────────────────────────────┐
-│                       MODEL ZOO (10 Architectures)               │
-│                                                                  │
-│  ┌─────────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────────┐ │
-│  │ Vanilla AE  │ │   VAE    │ │  1D-CNN  │ │ BiLSTM+Attention │ │
-│  └─────────────┘ └──────────┘ └──────────┘ └──────────────────┘ │
-│  ┌─────────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────────┐ │
-│  │  CNN-LSTM   │ │FT-Transf.│ │E-GraphSAGE│ │ GNN-Transformer │ │
-│  └─────────────┘ └──────────┘ └──────────┘ └──────────────────┘ │
-│  ┌────────────────────────────┐ ┌────────────────────────────┐   │
-│  │ Contrastive SSL + Probe   │ │   Isolation Forest (ML)    │   │
-│  └────────────────────────────┘ └────────────────────────────┘   │
-│  ┌────────────────────────────────────────────────────────────┐   │
-│  │            Stacking Ensemble Meta-Learner                 │   │
-│  └────────────────────────────────────────────────────────────┘   │
-└──────────────┬───────────────────────────────────────────────────┘
-               │
-┌──────────────▼───────────────────────────────────────────────────┐
-│                    EVALUATION ENGINE                             │
-│  Standard Metrics │ Operational Metrics │ Statistical Tests      │
-│  Adversarial Robustness │ Explainability │ Cross-Dataset Eval    │
-└──────────────┬───────────────────────────────────────────────────┘
-               │
-┌──────────────▼───────────────────────────────────────────────────┐
-│                    ADAPTIVE RUNTIME                              │
-│  Streaming Inference │ ADWIN Drift Detection │ Incremental Retrain│
-└──────────────────────────────────────────────────────────────────┘
-```
-
----
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/94301a6a-429e-44e2-a41c-b70949b15b85" />
 
 ## Datasets
 
